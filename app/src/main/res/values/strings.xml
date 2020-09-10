@@ -2,7 +2,7 @@
 
     <resources>
 
-    <string name="app_name">ZhのCalculator</string>
+    <string name="app_name">calculator</string>
 
     <string name="input">请输入</string>
 

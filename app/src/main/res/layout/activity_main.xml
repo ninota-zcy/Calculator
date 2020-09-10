@@ -8,7 +8,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android">
-
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
@@ -38,11 +37,10 @@
         android:layout_width="match_parent"
         android:background="#d9ffff"
         android:id="@+id/input"
-        android:text="@string/input"
+        android:hint="@string/input"
         android:inputType="textPersonName"
         android:ems="10"
         android:gravity="right"
-        android:editable="false"
         android:layout_gravity="center"/>
     <TextView
         android:layout_height="20dp"
@@ -54,11 +52,10 @@
         android:layout_width="match_parent"
         android:background="#d9ffff"
         android:id="@+id/output"
-        android:text="@string/output"
+        android:hint="@string/output"
         android:inputType="textPersonName"
         android:ems="10"
         android:gravity="right"
-        android:editable="true"
         android:layout_gravity="center"/>
     <TextView
         android:layout_height="20dp"
@@ -95,7 +92,9 @@
             android:layout_width="wrap_content"
             android:id="@+id/njiecheng"
             android:text="@string/jiecheng"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickjiecheng"
+            />
 
         <Button
             android:background="#ff8040"
@@ -103,7 +102,9 @@
             android:layout_width="wrap_content"
             android:id="@+id/cls"
             android:text="@string/clear"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickClear"/>
+
 
         <Button
             android:background="#ff8040"
@@ -111,7 +112,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/back"
             android:text="@string/back"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickBack"/>
 
     </LinearLayout>
 
@@ -134,7 +136,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/genhaox"
             android:text="@string/genhaox"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickKaigenhao"/>
 
         <Button
             android:background="#00aeae"
@@ -142,7 +145,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/xfang"
             android:text="@string/xfang"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickPingfang"/>
 
         <Button
             android:background="#00aeae"
@@ -150,7 +154,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/mod"
             android:text="@string/mod"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickMod"/>
 
         <Button
             android:background="#00aeae"
@@ -158,7 +163,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/zhengchu"
             android:text="@string/baifenhao"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickBaifenhao"/>
 
         <Button
             android:background="#009393"
@@ -166,7 +172,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/chu"
             android:text="@string/chu"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickChu"/>
     </LinearLayout>
 
         <TextView
@@ -187,7 +194,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/lnx"
             android:text="@string/lnx"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickLn"/>
 
         <Button
             android:background="#00caca"
@@ -195,7 +203,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/seven"
             android:text="@string/seven"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClick7"/>
 
         <Button
             android:background="#00caca"
@@ -203,14 +212,16 @@
             android:layout_width="wrap_content"
             android:id="@+id/eight"
             android:text="@string/eight"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClick8"/>
 
         <Button
             android:background="#00caca"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:id="@+id/nine" android:text="@string/nine"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClick9"/>
 
         <Button
             android:background="#009393"
@@ -218,7 +229,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/cheng"
             android:text="@string/cheng"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickCheng"/>
 
     </LinearLayout>
 
@@ -239,7 +251,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/logx"
             android:text="@string/logx"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickLog"/>
 
         <Button
             android:background="#00caca"
@@ -247,7 +260,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/four"
             android:text="@string/four"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClick4"/>
 
         <Button
             android:background="#00caca"
@@ -255,7 +269,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/five"
             android:text="@string/five"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClick5"/>
 
         <Button
             android:background="#00caca"
@@ -263,7 +278,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/six"
             android:text="@string/six"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClick6"/>
 
         <Button
             android:background="#009393"
@@ -271,7 +287,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/jian"
             android:text="@string/jian"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickJian"/>
 
     </LinearLayout>
 
@@ -293,7 +310,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/sinx"
             android:text="@string/sinx"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickSin"/>
 
         <Button
             android:background="#00caca"
@@ -301,7 +319,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/one"
             android:text="@string/one"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClick1"/>
 
         <Button
             android:background="#00caca"
@@ -309,7 +328,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/two"
             android:text="@string/two"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClick2"/>
 
         <Button
             android:background="#00caca"
@@ -317,14 +337,16 @@
             android:layout_width="wrap_content"
             android:id="@+id/three"
             android:text="@string/three"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClick3"/>
 
         <Button
             android:background="#009393"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:id="@+id/jia" android:text="@string/jia"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickJia"/>
 
     </LinearLayout>
 
@@ -342,7 +364,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/cosx"
             android:text="@string/cosx"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickCos"/>
 
         <Button
             android:background="#00caca"
@@ -350,7 +373,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/bin"
             android:text="@string/pai"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickPai"/>
 
         <Button
             android:background="#00caca"
@@ -358,7 +382,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/zero"
             android:text="@string/zero"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClick0"/>
 
         <Button
             android:background="#00caca"
@@ -366,7 +391,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/dot"
             android:text="@string/dot"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickDot"/>
 
         <Button
             android:background="#ff5809"
@@ -374,7 +400,8 @@
             android:layout_width="wrap_content"
             android:id="@+id/dengyu"
             android:text="@string/dengyu"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClickDengyu"/>
 
 </LinearLayout>
 

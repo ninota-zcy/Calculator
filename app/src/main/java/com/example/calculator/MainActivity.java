@@ -97,7 +97,13 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onClickDot(View view) {
         EditText edittext = findViewById(R.id.input);
-        edittext.setText(edittext.getText()+".");
+        String str = edittext.getText().toString();
+        if(str.length() == 0){
+            edittext.setText("0.");
+        }
+        else
+            edittext.setText(edittext.getText()+".");
+
     }
 
     /**
@@ -145,19 +151,19 @@ public class MainActivity extends AppCompatActivity {
         String str = edittext.getText().toString();
         Log.i(TAG,str);
         int flag = 0;
-//        for(int i=0; i<str.length()-1; i++){
-//            if(str.charAt(i)<'0' && str.charAt(i)>'9' && str.charAt(i+1)<'0' && str.charAt(i+1)>'9'){
-//                flag = 1;
-//            }
-//        }
-//        Log.i(TAG,str+flag+str.length());
-//        if(str.length() == 0)
-//            Toast.makeText(MainActivity.this,"不能为空", Toast.LENGTH_LONG).show();
-//        if(flag == 1)
-//            Toast.makeText(MainActivity.this,"不能连续输入运算符", Toast.LENGTH_LONG).show();
-//        if(str.charAt(0)<'0' && str.charAt(0)>'9')
-//            Toast.makeText(MainActivity.this,"首字符不能为运算符", Toast.LENGTH_LONG).show();
-//        else{
+        for(int i=0; i<str.length()-1; i++){
+            if((str.charAt(i)<'0' || str.charAt(i)>'9')&& (str.charAt(i+1)<'0' || str.charAt(i+1)>'9')){
+                flag = 1;
+            }
+        }
+        Log.i(TAG,str+flag+str.length());
+        if(str.length() == 0)
+            Toast.makeText(MainActivity.this,"不能为空", Toast.LENGTH_LONG).show();
+        if(flag == 1)
+            Toast.makeText(MainActivity.this,"不能连续输入运算符", Toast.LENGTH_LONG).show();
+        if(str.charAt(0)<'0' && str.charAt(0)>'9')
+            Toast.makeText(MainActivity.this,"首字符不能为运算符", Toast.LENGTH_LONG).show();
+        else{
             LinkedList<String> list=new LinkedList<>();
             for(int i=0; i<str.length(); i++) {
                 list.add(str.charAt(i)+"");
@@ -166,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
             EditText outputt = findViewById(R.id.output);
             outputt.setText(result);
 
-//        }
+        }
 
     }
 

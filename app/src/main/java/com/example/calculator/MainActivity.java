@@ -2,14 +2,20 @@ package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,20 +28,69 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickDaoshu(View view) {
+        EditText editext = findViewById(R.id.input);
+        EditText editext2 = findViewById(R.id.output);
+        String str = editext.getText().toString();
+        double result = Double.parseDouble(str);
+
+        editext2.setText(format(1/result));
     }
 
 
 
     public void onClickjiecheng(View view) {
+        EditText editext = findViewById(R.id.input);
+        EditText editext2 = findViewById(R.id.output);
+        String str = editext.getText().toString();
+        if(!isInteger(str)){
+            Toast.makeText(MainActivity.this,"请输入整数", Toast.LENGTH_LONG).show();
+        }else{
+            int re = Integer.parseInt(str);
+            System.out.println(re);
+            int count = re;
+            int result = 1;
+            for(int i=0; i<re; i++){
+                result *= count;
+                count --;
+            }
+            editext2.setText(result+"");
+        }
+
     }
 
     public void onClickClear(View view) {
+        EditText editext = findViewById(R.id.input);
+        EditText editext2 = findViewById(R.id.output);
+        editext.setText("");
+        editext2.setText("");
     }
 
     public void onClickBack(View view) {
+        EditText editext = findViewById(R.id.input);
+        String str = editext.getText().toString();
+        if(str.equals(""))
+            editext.setText("");
+        else
+            editext.setText(str.substring(0,str.length()-1));
     }
 
     public void onClickKaigenhao(View view) {
+        EditText editext = findViewById(R.id.input);
+        EditText editext2 = findViewById(R.id.output);
+        String str = editext.getText().toString();
+        if(!isInteger(str)){
+            Toast.makeText(MainActivity.this,"请输入整数", Toast.LENGTH_LONG).show();
+        }else{
+            int re = Integer.parseInt(str);
+            System.out.println(re);
+            int count = re;
+            int result = 1;
+            for(int i=0; i<re; i++){
+                result *= count;
+                count --;
+            }
+            editext2.setText(result+"");
+        }
     }
 
     public void onClickPingfang(View view) {
@@ -55,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
      * 数字
      * @param view
      */
+    @SuppressLint("SetTextI18n")
     public void onClick0(View view) {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"0");
@@ -148,31 +204,46 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickDengyu(View view) {
         EditText edittext = findViewById(R.id.input);
+        EditText edittext2 = findViewById(R.id.output);
         String str = edittext.getText().toString();
         Log.i(TAG,str);
         int flag = 0;
-        for(int i=0; i<str.length()-1; i++){
-            if((str.charAt(i)<'0' || str.charAt(i)>'9')&& (str.charAt(i+1)<'0' || str.charAt(i+1)>'9')){
-                flag = 1;
+        if(str.length() >= 2){
+            for(int i=0; i<str.length()-1; i++){
+                if((str.charAt(i)<'0' || str.charAt(i)>'9')&& (str.charAt(i+1)<'0' || str.charAt(i+1)>'9')){
+                    flag = 1;
+                }
             }
         }
+       // try{
         Log.i(TAG,str+flag+str.length());
-        if(str.length() == 0)
-            Toast.makeText(MainActivity.this,"不能为空", Toast.LENGTH_LONG).show();
-        if(flag == 1)
-            Toast.makeText(MainActivity.this,"不能连续输入运算符", Toast.LENGTH_LONG).show();
-        if(str.charAt(0)<'0' && str.charAt(0)>'9')
-            Toast.makeText(MainActivity.this,"首字符不能为运算符", Toast.LENGTH_LONG).show();
-        else{
-            LinkedList<String> list=new LinkedList<>();
-            for(int i=0; i<str.length(); i++) {
-                list.add(str.charAt(i)+"");
-            }
-            String result = transferToPostfix(list);
-            EditText outputt = findViewById(R.id.output);
-            outputt.setText(result);
 
-        }
+            if(str.equals("") || str.length() == 0) {
+                edittext.setText("");
+                Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
+            }
+            else if(flag == 1)
+                Toast.makeText(MainActivity.this,"不能连续输入运算符", Toast.LENGTH_LONG).show();
+            else if(!Character.isDigit(str.charAt(0)))
+                Toast.makeText(MainActivity.this,"首字符不能为运算符", Toast.LENGTH_LONG).show();
+            else{
+
+                LinkedList<String> list=new LinkedList<>();
+                for(int i=0; i<str.length(); i++) {
+                    list.add(str.charAt(i)+"");
+                }
+                String result = transferToPostfix(list);
+                double ree = Double.parseDouble(result);
+                String re = format(ree);
+
+                edittext2.setText(re);
+                }
+
+//            }
+//        catch(Exception e){
+//            Toast.makeText(MainActivity.this,"ERROR", Toast.LENGTH_LONG).show();
+//        }
+
 
     }
 
@@ -252,16 +323,27 @@ public class MainActivity extends AppCompatActivity {
 
         for(int i=0; i<strs.length; i++) {
 
-
+            if(isNumeric(strs[i])) {
                 sb2.append(strs[i]).append(" ");
 
-
+            }
+            else
                 sb2.append(strs[i]).append(" ");
             //Character.isDigit(strs[i]);
         }
         sb = sb2;
         return calculate();
         //Collections.reverse(output);
+    }
+
+    /**
+     * 使用BigDecimal，保留小数点后两位
+     */
+    public static String format(double value) {
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.toString();
     }
 
     //根据后缀表达式计算结果
@@ -272,15 +354,17 @@ public class MainActivity extends AppCompatActivity {
         for (String s:postStr) {
             if (isOperator(s)){
                 if (!mList.isEmpty()){
-                    double num1=Double.valueOf(mList.pop());
+                    double num1=Double.parseDouble(mList.pop());
+                    BigDecimal num111 = new BigDecimal(num1);
                     System.out.println("num1:"+ num1);
-                    double num2=Double.valueOf(mList.pop());
+                    double num2=Double.parseDouble(mList.pop());
+                    BigDecimal num222 = new BigDecimal(num2);
                     System.out.println("num2:"+ num2);
                     if (s.equals("/")&&num1==0){
                         System.out.println("除数不能为0");
 
                     }
-                    double newNum=cal(num2,num1,s);
+                    double newNum=cal(num222,num111,s);
                     System.out.println("中途："+newNum);
                     mList.push(String.valueOf(newNum));
                 }
@@ -316,13 +400,26 @@ public class MainActivity extends AppCompatActivity {
             default :return 0;
         }
     }
+    public static boolean isInteger(String str) {
+        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
+        return pattern.matcher(str).matches();
+    }
+    //判断字符串是否为数字
+    public static boolean isNumeric(String str) {
 
-    private static double cal(double num2,double num1,String operator){
+        Pattern pattern = Pattern.compile("^(\\-|\\+)?\\d+(\\.\\d+)?$");//这个是对的
+        Matcher isNum = pattern.matcher(str);
+        if (!isNum.matches()) {
+            return false;
+        }
+        return true;
+    }
+    private static double cal(BigDecimal num222, BigDecimal num111, String operator){
         switch (operator){
-            case "+":return (double)(num2+num1);
-            case "-":return (double)(num2-num1);
-            case "*":return (double)(num2*num1);
-            case "/":return (double)(num2/num1);
+            case "+":return num222.add(num111).doubleValue();
+            case "-":return num222.subtract(num111).doubleValue();
+            case "*":return num111.multiply(num222).doubleValue();
+            case "/":return num222.divide(num111,10,BigDecimal.ROUND_HALF_UP).doubleValue();
             default :return 0;
         }
     }

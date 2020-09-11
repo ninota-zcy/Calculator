@@ -31,9 +31,17 @@ public class MainActivity extends AppCompatActivity {
         EditText editext = findViewById(R.id.input);
         EditText editext2 = findViewById(R.id.output);
         String str = editext.getText().toString();
-        double result = Double.parseDouble(str);
+        if(str.equals("") || str.length() == 0) {
 
-        editext2.setText(format(1/result));
+            Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
+        }else{
+
+
+            double result = Double.parseDouble(str);
+
+            editext2.setText(format(1/result));
+        }
+
     }
 
 
@@ -42,18 +50,24 @@ public class MainActivity extends AppCompatActivity {
         EditText editext = findViewById(R.id.input);
         EditText editext2 = findViewById(R.id.output);
         String str = editext.getText().toString();
-        if(!isInteger(str)){
-            Toast.makeText(MainActivity.this,"请输入整数", Toast.LENGTH_LONG).show();
+        if(str.equals("") || str.length() == 0) {
+
+            Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
         }else{
-            int re = Integer.parseInt(str);
-            System.out.println(re);
-            int count = re;
-            int result = 1;
-            for(int i=0; i<re; i++){
-                result *= count;
-                count --;
+            if(!isInteger(str)){
+                Toast.makeText(MainActivity.this,"请输入整数", Toast.LENGTH_LONG).show();
+            }else{
+                int re = Integer.parseInt(str);
+                System.out.println(re);
+                int count = re;
+                int result = 1;
+                for(int i=0; i<re; i++){
+                    result *= count;
+                    count --;
+                }
+                editext2.setText(result+"");
             }
-            editext2.setText(result+"");
+
         }
 
     }
@@ -78,32 +92,83 @@ public class MainActivity extends AppCompatActivity {
         EditText editext = findViewById(R.id.input);
         EditText editext2 = findViewById(R.id.output);
         String str = editext.getText().toString();
-        if(!isInteger(str)){
-            Toast.makeText(MainActivity.this,"请输入整数", Toast.LENGTH_LONG).show();
+        if(str.equals("") || str.length() == 0) {
+
+            Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
         }else{
-            int re = Integer.parseInt(str);
-            System.out.println(re);
-            int count = re;
-            int result = 1;
-            for(int i=0; i<re; i++){
-                result *= count;
-                count --;
-            }
-            editext2.setText(result+"");
+            double re = Double.parseDouble(str);
+
+            editext2.setText(Math.sqrt(re)+"");
         }
+
     }
+
 
     public void onClickPingfang(View view) {
+        EditText editext = findViewById(R.id.input);
+        EditText editext2 = findViewById(R.id.output);
+        String str = editext.getText().toString();
+        if(str.equals("") || str.length() == 0) {
+
+            Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
+        }else{
+            double re = Double.parseDouble(str);
+
+            editext2.setText(format(re*re));
+        }
+
     }
 
+    public double abs(double a){
+        return a>0?a:-a;
+    }
     public void onClickMod(View view) {
+        EditText editext = findViewById(R.id.input);
+        EditText editext2 = findViewById(R.id.output);
+        String str = editext.getText().toString();
+        if(str.equals("") || str.length() == 0) {
+
+            Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
+        }else{
+            double re = Double.parseDouble(str);
+
+            editext2.setText(abs(re)+"");
+        }
+
     }
 
     public void onClickBaifenhao(View view) {
+        EditText editext = findViewById(R.id.input);
+        EditText editext2 = findViewById(R.id.output);
+        String str = editext.getText().toString();
+        if(str.equals("") || str.length() == 0) {
+
+            Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
+        }else{
+            double re = Double.parseDouble(str);
+
+            editext2.setText(re*100+"%");
+        }
+
     }
 
 
     public void onClickLn(View view) {
+        EditText editext = findViewById(R.id.input);
+        EditText editext2 = findViewById(R.id.output);
+        String str = editext.getText().toString();
+        if(str.equals("") || str.length() == 0) {
+
+            Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
+        }else{
+            double re = Double.parseDouble(str);
+            if(re == 0){
+                Toast.makeText(MainActivity.this,"不能为0", Toast.LENGTH_LONG).show();
+            }else{
+                editext2.setText(Math.log(re)+"");
+            }
+        }
+
     }
 
     /**
@@ -184,16 +249,57 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onClickXN(View view) {
         EditText edittext = findViewById(R.id.input);
-        edittext.setText(edittext.getText()+"^");
+        edittext.setText(edittext.getText()+"#");
     }
 
     public void onClickLog(View view) {
+        EditText editext = findViewById(R.id.input);
+        EditText editext2 = findViewById(R.id.output);
+        String str = editext.getText().toString();
+        if(str.equals("") || str.length() == 0) {
+
+            Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
+        }else{
+            double re = Double.parseDouble(str);
+            if(re == 0){
+                Toast.makeText(MainActivity.this,"不能为0", Toast.LENGTH_LONG).show();
+            }else{
+                editext2.setText(Math.log10(re)+"");
+            }
+        }
+
     }
 
     public void onClickSin(View view) {
+        EditText editext = findViewById(R.id.input);
+        EditText editext2 = findViewById(R.id.output);
+        String str = editext.getText().toString();
+        if(str.equals("") || str.length() == 0) {
+
+            Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
+        }else{
+            double re = Double.parseDouble(str);
+
+            double a = Math.toRadians(re);
+            editext2.setText(Math.sin(a)+"");
+        }
+
+
     }
 
     public void onClickCos(View view) {
+        EditText editext = findViewById(R.id.input);
+        EditText editext2 = findViewById(R.id.output);
+        String str = editext.getText().toString();
+        if(str.equals("") || str.length() == 0) {
+
+            Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
+        }else{
+            double re = Double.parseDouble(str);
+            double a = Math.toRadians(re);
+            editext2.setText(Math.cos(a)+"");
+        }
+
     }
 
     public void onClickPai(View view) {
@@ -215,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-       // try{
+        try{
         Log.i(TAG,str+flag+str.length());
 
             if(str.equals("") || str.length() == 0) {
@@ -226,6 +332,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"不能连续输入运算符", Toast.LENGTH_LONG).show();
             else if(!Character.isDigit(str.charAt(0)))
                 Toast.makeText(MainActivity.this,"首字符不能为运算符", Toast.LENGTH_LONG).show();
+            else if(str.contains("#")){
+                String[] list = str.split("#");
+                double num1 = Double.parseDouble(list[0]);
+                double num2 = Double.parseDouble(list[1]);
+                edittext2.setText(format(Math.pow(num1, num2))+"");
+            }
             else{
 
                 LinkedList<String> list=new LinkedList<>();
@@ -239,10 +351,10 @@ public class MainActivity extends AppCompatActivity {
                 edittext2.setText(re);
                 }
 
-//            }
-//        catch(Exception e){
-//            Toast.makeText(MainActivity.this,"ERROR", Toast.LENGTH_LONG).show();
-//        }
+            }
+        catch(Exception e){
+            Toast.makeText(MainActivity.this,"ERROR", Toast.LENGTH_LONG).show();
+        }
 
 
     }

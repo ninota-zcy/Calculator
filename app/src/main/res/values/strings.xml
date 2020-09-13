@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-    <resources>
+<resources>
 
     <string name="app_name">calculator</string>
 
@@ -66,5 +66,7 @@
     <string name="eight">8</string>
 
     <string name="nine">9</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -165,6 +165,23 @@
             android:text="@string/baifenhao"
             android:layout_weight="1"
             android:onClick="onClickBaifenhao"/>
+        <Button
+            android:background="#00aeae"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/zuo"
+            android:text="("
+            android:layout_weight="1"
+            android:onClick="onClickZuo"/>
+
+        <Button
+            android:background="#00aeae"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/you"
+            android:text=")"
+            android:layout_weight="1"
+            android:onClick="onClickYou"/>
 
         <Button
             android:background="#009393"

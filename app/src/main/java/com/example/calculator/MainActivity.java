@@ -2,7 +2,7 @@ package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,8 +14,8 @@ import java.math.RoundingMode;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
      * 数字
      * @param view
      */
-    @SuppressLint("SetTextI18n")
+
     public void onClick0(View view) {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"0");
@@ -247,6 +247,14 @@ public class MainActivity extends AppCompatActivity {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"-");
     }
+    public void onClickZuo(View view) {
+        EditText edittext = findViewById(R.id.input);
+        edittext.setText(edittext.getText()+"(");
+    }
+    public void onClickYou(View view) {
+        EditText edittext = findViewById(R.id.input);
+        edittext.setText(edittext.getText()+")");
+    }
     public void onClickXN(View view) {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"#");
@@ -316,8 +324,9 @@ public class MainActivity extends AppCompatActivity {
         int flag = 0;
         if(str.length() >= 2){
             for(int i=0; i<str.length()-1; i++){
-                if((str.charAt(i)<'0' || str.charAt(i)>'9')&& (str.charAt(i+1)<'0' || str.charAt(i+1)>'9')){
+                if(((str.charAt(i)<'0' || str.charAt(i)>'9')&& (str.charAt(i+1)<'0' || str.charAt(i+1)>'9')) && ((str.charAt(i) != '(' && str.charAt(i) != ')') &&(str.charAt(i+1) != '(' && str.charAt(i+1) != ')'))){
                     flag = 1;
+                    break;
                 }
             }
         }
@@ -330,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else if(flag == 1)
                 Toast.makeText(MainActivity.this,"不能连续输入运算符", Toast.LENGTH_LONG).show();
-            else if(!Character.isDigit(str.charAt(0)))
+            else if(!Character.isDigit(str.charAt(0)) && str.charAt(0) != '(' && str.charAt(0) != ')')
                 Toast.makeText(MainActivity.this,"首字符不能为运算符", Toast.LENGTH_LONG).show();
             else if(str.contains("#")){
                 String[] list = str.split("#");
@@ -359,6 +368,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+    /**
+     * 使用BigDecimal，保留小数点后两位
+     */
+    public static String format(double value) {
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.toString();
+    }
+
     //用于记录操作符
     private static LinkedList<String> operators=new LinkedList<>();
     //用于记录输出
@@ -366,7 +387,16 @@ public class MainActivity extends AppCompatActivity {
     //用于展示后缀表达式
     private static StringBuilder sb=new StringBuilder();
 
-
+    public static void main(String[] args) {
+        LinkedList<String> list=new LinkedList<>();
+        Scanner scanner=new Scanner(System.in);
+        String str = scanner.next();
+        for(int i=0; i<str.length(); i++) {
+            list.add(str.charAt(i)+"");
+        }
+        String result = transferToPostfix(list);
+        System.out.println(result);
+    }
 
     //中缀表达式转为后缀表达式
     private static String transferToPostfix(LinkedList<String> list){
@@ -375,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
             String s = it.next();
             if (isOperator(s)) {
                 sb.append("#");
-                if(operators.isEmpty()) {
+                if (operators.isEmpty()) {
                     operators.push(s);
                 }
                 else {
@@ -420,49 +450,40 @@ public class MainActivity extends AppCompatActivity {
             Iterator<String> iterator=operators.iterator();
             while (iterator.hasNext()) {
                 String operator=iterator.next();
-                sb.append(operator).append(" ");
+                sb.append(operator);
                 output.push(operator);
                 iterator.remove();
             }
         }
+        System.out.println("后缀： "+sb);
         StringBuilder sb2 = new StringBuilder();
 
 
-        System.out.println("后缀： "+sb+"end");
 
         String[] strs=sb.toString().split("#");
-
+        for(int i=0; i<strs.length; i++) {
+            System.out.println(strs[i]);
+        }
 
         for(int i=0; i<strs.length; i++) {
 
-            if(isNumeric(strs[i])) {
+            if(!strs[i].equals("")) {
+                System.out.print(strs[i]+"||");
                 sb2.append(strs[i]).append(" ");
-
             }
-            else
-                sb2.append(strs[i]).append(" ");
-            //Character.isDigit(strs[i]);
+
+
         }
+        System.out.print("sb2: "+sb2);
         sb = sb2;
         return calculate();
         //Collections.reverse(output);
-    }
-
-    /**
-     * 使用BigDecimal，保留小数点后两位
-     */
-    public static String format(double value) {
-
-        BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(2, RoundingMode.HALF_UP);
-        return bd.toString();
     }
 
     //根据后缀表达式计算结果
     private static String calculate(){
         LinkedList<String> mList=new LinkedList<>();
         String[] postStr=sb.toString().split(" ");
-
         for (String s:postStr) {
             if (isOperator(s)){
                 if (!mList.isEmpty()){
@@ -484,12 +505,9 @@ public class MainActivity extends AppCompatActivity {
             else {
                 //数字则压入栈中
                 mList.push(s);
-                System.out.println(s);
             }
         }
-
         return mList.pop();
-
     }
 
     //判断是否操作符
@@ -512,21 +530,12 @@ public class MainActivity extends AppCompatActivity {
             default :return 0;
         }
     }
+    //判断字符串是否为整数
     public static boolean isInteger(String str) {
         Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
         return pattern.matcher(str).matches();
     }
-    //判断字符串是否为数字
-    public static boolean isNumeric(String str) {
-
-        Pattern pattern = Pattern.compile("^(\\-|\\+)?\\d+(\\.\\d+)?$");//这个是对的
-        Matcher isNum = pattern.matcher(str);
-        if (!isNum.matches()) {
-            return false;
-        }
-        return true;
-    }
-    private static double cal(BigDecimal num222, BigDecimal num111, String operator){
+    private static double cal(BigDecimal num222,BigDecimal num111,String operator){
         switch (operator){
             case "+":return num222.add(num111).doubleValue();
             case "-":return num222.subtract(num111).doubleValue();

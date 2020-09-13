@@ -46,10 +46,7 @@
             android:ems="10"
             android:gravity="right"
             android:layout_gravity="center"/>
-        <TextView
-            android:layout_height="20dp"
-            android:layout_width="match_parent"
-            android:id="@+id/blank2" />
+
         <!--第一行按钮-->
         <LinearLayout
             android:layout_height="match_parent"
@@ -106,11 +103,7 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_height="20dp"
-            android:layout_width="match_parent"
-            android:id="@+id/blank3"
-            android:ems="10"/>
+
 
 
         <!--第二行按钮-->
@@ -128,14 +121,7 @@
                 android:layout_weight="1"
                 android:onClick="onClickKaigenhao"/>
 
-            <Button
-                android:background="#00aeae"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:id="@+id/xfang"
-                android:text="@string/xfang"
-                android:layout_weight="1"
-                android:onClick="onClickPingfang"/>
+
 
             <Button
                 android:background="#00aeae"
@@ -146,14 +132,6 @@
                 android:layout_weight="1"
                 android:onClick="onClickMod"/>
 
-            <Button
-                android:background="#00aeae"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:id="@+id/zhengchu"
-                android:text="@string/baifenhao"
-                android:layout_weight="1"
-                android:onClick="onClickBaifenhao"/>
             <Button
                 android:background="#00aeae"
                 android:layout_height="wrap_content"
@@ -175,18 +153,14 @@
             <Button
                 android:background="#009393"
                 android:layout_height="wrap_content"
-                android:layout_width="138dp"
+                android:layout_width="wrap_content"
                 android:id="@+id/chu"
                 android:text="@string/chu"
                 android:layout_weight="1"
                 android:onClick="onClickChu"/>
         </LinearLayout>
 
-        <TextView
-            android:layout_height="20dp"
-            android:layout_width="match_parent"
-            android:id="@+id/blank4"
-            android:ems="10"/>
+
 
         <!--第三行按钮-->
         <LinearLayout
@@ -240,11 +214,7 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_height="20dp"
-            android:layout_width="match_parent"
-            android:id="@+id/blank5"
-            android:ems="10"/>
+
         <!--第四行按钮-->
         <LinearLayout
             android:layout_height="match_parent"
@@ -298,11 +268,7 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_height="20dp"
-            android:layout_width="match_parent"
-            android:id="@+id/blank6"
-            android:ems="10"/>
+
 
         <!--第五行按钮-->
         <LinearLayout
@@ -356,11 +322,7 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_height="20dp"
-            android:layout_width="match_parent"
-            android:id="@+id/blank7"
-            android:ems="10"/>
+
         <!--第六行按钮-->
         <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="horizontal">
 

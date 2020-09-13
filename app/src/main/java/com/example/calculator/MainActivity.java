@@ -3,6 +3,7 @@ package com.example.calculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,8 @@ import java.util.regex.Pattern;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     private static final String TAG = "text";
 
@@ -257,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onClickXN(View view) {
         EditText edittext = findViewById(R.id.input);
-        edittext.setText(edittext.getText()+"#");
+        edittext.setText(edittext.getText()+"^");
     }
 
     public void onClickLog(View view) {
@@ -513,7 +516,7 @@ public class MainActivity extends AppCompatActivity {
     //判断是否操作符
     private static boolean isOperator(String oper){
         if (oper.equals("+")||oper.equals("-")||oper.equals("/")||oper.equals("*")
-                ||oper.equals("(")||oper.equals(")")) {
+                ||oper.equals("(")||oper.equals(")")||oper.equals("^")) {
             return true;
         }
         return false;
@@ -527,6 +530,7 @@ public class MainActivity extends AppCompatActivity {
             case "/":return 2;
             case "(":return 3;
             case ")":return 3;
+            case "^":return 4;
             default :return 0;
         }
     }
@@ -541,6 +545,7 @@ public class MainActivity extends AppCompatActivity {
             case "-":return num222.subtract(num111).doubleValue();
             case "*":return num111.multiply(num222).doubleValue();
             case "/":return num222.divide(num111,10,BigDecimal.ROUND_HALF_UP).doubleValue();
+            case "^":return Math.pow(num222.doubleValue(), num111.doubleValue());
             default :return 0;
         }
     }

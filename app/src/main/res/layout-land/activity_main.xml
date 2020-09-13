@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    tools:context=".MainActivity"
+    android:background="#00e3e3"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout
+
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
+
+        <!--输入输出-->
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="#d9ffff"
+            android:id="@+id/input"
+            android:hint="@string/input"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:gravity="right"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_height="20dp"
+            android:layout_width="match_parent"
+            android:id="@+id/blank1" />
+        <!--左边开始填充-->
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="#d9ffff"
+            android:id="@+id/output"
+            android:hint="@string/output"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:gravity="right"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_height="20dp"
+            android:layout_width="match_parent"
+            android:id="@+id/blank2" />
+        <!--第一行按钮-->
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:background="#00aeae"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/daoshu"
+                android:text="@string/daoshu"
+                android:layout_weight="1"
+                android:onClick="onClickDaoshu"/>
+
+
+            <Button
+                android:background="#00aeae"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/xn"
+                android:text="@string/cifang"
+                android:layout_weight="1"
+                android:onClick="onClickXN"/>
+
+            <Button
+                android:background="#00aeae"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/njiecheng"
+                android:text="@string/jiecheng"
+                android:layout_weight="1"
+                android:onClick="onClickjiecheng"
+                />
+
+            <Button
+                android:background="#ff8040"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/cls"
+                android:text="@string/clear"
+                android:layout_weight="1"
+                android:onClick="onClickClear"/>
+
+
+            <Button
+                android:background="#ff8040"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/back"
+                android:text="@string/back"
+                android:layout_weight="1"
+                android:onClick="onClickBack"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_height="20dp"
+            android:layout_width="match_parent"
+            android:id="@+id/blank3"
+            android:ems="10"/>
+
+
+        <!--第二行按钮-->
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:background="#00aeae"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:id="@+id/genhaox"
+                android:text="@string/genhaox"
+                android:layout_weight="1"
+                android:onClick="onClickKaigenhao"/>
+
+            <Button
+                android:background="#00aeae"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/xfang"
+                android:text="@string/xfang"
+                android:layout_weight="1"
+                android:onClick="onClickPingfang"/>
+
+            <Button
+                android:background="#00aeae"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/mod"
+                android:text="@string/mod"
+                android:layout_weight="1"
+                android:onClick="onClickMod"/>
+
+            <Button
+                android:background="#00aeae"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/zhengchu"
+                android:text="@string/baifenhao"
+                android:layout_weight="1"
+                android:onClick="onClickBaifenhao"/>
+            <Button
+                android:background="#00aeae"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/zuo"
+                android:text="("
+                android:layout_weight="1"
+                android:onClick="onClickZuo"/>
+
+            <Button
+                android:background="#00aeae"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/you"
+                android:text=")"
+                android:layout_weight="1"
+                android:onClick="onClickYou"/>
+
+            <Button
+                android:background="#009393"
+                android:layout_height="wrap_content"
+                android:layout_width="138dp"
+                android:id="@+id/chu"
+                android:text="@string/chu"
+                android:layout_weight="1"
+                android:onClick="onClickChu"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_height="20dp"
+            android:layout_width="match_parent"
+            android:id="@+id/blank4"
+            android:ems="10"/>
+
+        <!--第三行按钮-->
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:background="#00aeae"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/lnx"
+                android:text="@string/lnx"
+                android:layout_weight="1"
+                android:onClick="onClickLn"/>
+
+            <Button
+                android:background="#00caca"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/seven"
+                android:text="@string/seven"
+                android:layout_weight="1"
+                android:onClick="onClick7"/>
+
+            <Button
+                android:background="#00caca"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/eight"
+                android:text="@string/eight"
+                android:layout_weight="1"
+                android:onClick="onClick8"/>
+
+            <Button
+                android:background="#00caca"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/nine" android:text="@string/nine"
+                android:layout_weight="1"
+                android:onClick="onClick9"/>
+
+            <Button
+                android:background="#009393"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/cheng"
+                android:text="@string/cheng"
+                android:layout_weight="1"
+                android:onClick="onClickCheng"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_height="20dp"
+            android:layout_width="match_parent"
+            android:id="@+id/blank5"
+            android:ems="10"/>
+        <!--第四行按钮-->
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:background="#00aeae"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/logx"
+                android:text="@string/logx"
+                android:layout_weight="1"
+                android:onClick="onClickLog"/>
+
+            <Button
+                android:background="#00caca"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/four"
+                android:text="@string/four"
+                android:layout_weight="1"
+                android:onClick="onClick4"/>
+
+            <Button
+                android:background="#00caca"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/five"
+                android:text="@string/five"
+                android:layout_weight="1"
+                android:onClick="onClick5"/>
+
+            <Button
+                android:background="#00caca"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/six"
+                android:text="@string/six"
+                android:layout_weight="1"
+                android:onClick="onClick6"/>
+
+            <Button
+                android:background="#009393"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/jian"
+                android:text="@string/jian"
+                android:layout_weight="1"
+                android:onClick="onClickJian"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_height="20dp"
+            android:layout_width="match_parent"
+            android:id="@+id/blank6"
+            android:ems="10"/>
+
+        <!--第五行按钮-->
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:background="#00aeae"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/sinx"
+                android:text="@string/sinx"
+                android:layout_weight="1"
+                android:onClick="onClickSin"/>
+
+            <Button
+                android:background="#00caca"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/one"
+                android:text="@string/one"
+                android:layout_weight="1"
+                android:onClick="onClick1"/>
+
+            <Button
+                android:background="#00caca"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/two"
+                android:text="@string/two"
+                android:layout_weight="1"
+                android:onClick="onClick2"/>
+
+            <Button
+                android:background="#00caca"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/three"
+                android:text="@string/three"
+                android:layout_weight="1"
+                android:onClick="onClick3"/>
+
+            <Button
+                android:background="#009393"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/jia" android:text="@string/jia"
+                android:layout_weight="1"
+                android:onClick="onClickJia"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_height="20dp"
+            android:layout_width="match_parent"
+            android:id="@+id/blank7"
+            android:ems="10"/>
+        <!--第六行按钮-->
+        <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="horizontal">
+
+            <Button
+                android:background="#00aeae"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/cosx"
+                android:text="@string/cosx"
+                android:layout_weight="1"
+                android:onClick="onClickCos"/>
+
+            <Button
+                android:background="#00caca"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/bin"
+                android:text="@string/pai"
+                android:layout_weight="1"
+                android:onClick="onClickPai"/>
+
+            <Button
+                android:background="#00caca"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/zero"
+                android:text="@string/zero"
+                android:layout_weight="1"
+                android:onClick="onClick0"/>
+
+            <Button
+                android:background="#00caca"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/dot"
+                android:text="@string/dot"
+                android:layout_weight="1"
+                android:onClick="onClickDot"/>
+
+            <Button
+                android:background="#ff5809"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/dengyu"
+                android:text="@string/dengyu"
+                android:layout_weight="1"
+                android:onClick="onClickDengyu"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

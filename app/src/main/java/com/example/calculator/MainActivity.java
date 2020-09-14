@@ -453,7 +453,7 @@ public class MainActivity extends AppCompatActivity {
             Iterator<String> iterator=operators.iterator();
             while (iterator.hasNext()) {
                 String operator=iterator.next();
-                sb.append(operator);
+                sb.append(operator).append("#");
                 output.push(operator);
                 iterator.remove();
             }

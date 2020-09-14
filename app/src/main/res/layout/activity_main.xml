@@ -9,15 +9,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <fragment
-        android:id="@+id/list"
-        android:name="com.example.calculator.ZhuanhuanFragment"
-        android:layout_width="match_parent"
-        android:layout_height="55pt"
-        app:layout_constraintBottom_toTopOf="@id/linearLayout"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="-16dp" />
+
 
     <LinearLayout
 
@@ -101,6 +93,14 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="horizontal">
+        <Button
+            android:background="#00aeae"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/xn"
+            android:text="@string/cifang"
+            android:layout_weight="1"
+            android:onClick="onClickXN"/>
 
 
         <Button
@@ -123,13 +123,12 @@
 
         <Button
             android:id="@+id/chu"
-
-            android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#009393"
             android:onClick="onClickChu"
-            android:text="@string/chu" />
+            android:text="@string/chu"
+            android:layout_width="wrap_content" />
     </LinearLayout>
 
         <TextView

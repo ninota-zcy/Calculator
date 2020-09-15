@@ -127,10 +127,10 @@
                 android:background="#00aeae"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:id="@+id/mod"
-                android:text="@string/mod"
+                android:id="@+id/abs"
+                android:text="@string/abs"
                 android:layout_weight="1"
-                android:onClick="onClickMod"/>
+                android:onClick="onClickAbs"/>
 
             <Button
                 android:background="#00aeae"

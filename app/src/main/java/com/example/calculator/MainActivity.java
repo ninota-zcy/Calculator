@@ -1,11 +1,15 @@
 package com.example.calculator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,6 +18,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -21,12 +26,61 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
 
 
-
+    public static List<Activity> activityList = new LinkedList();
     private static final String TAG = "text";
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.menu,menu);
+            return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.length:{
+                Intent intent = new Intent(MainActivity.this,Changdu.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.area:{
+                Intent intent = new Intent(MainActivity.this,Area.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.jinzhi:{
+                Intent intent = new Intent(MainActivity.this,Jinzhi.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.help:{
+                Intent intent = new Intent(MainActivity.this,Help.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.exit:{
+                exit();
+            }
+        }
+        return false;
+    }
+    public void exit(){
+
+        for(Activity act:activityList){
+
+            act.finish();
+
+        }
+
+        System.exit(0);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityList.add(this);
         setContentView(R.layout.activity_main);
     }
 
@@ -38,10 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
         }else{
-
-
             double result = Double.parseDouble(str);
-
             editext2.setText(format(1/result));
         }
 
@@ -107,25 +158,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void onClickPingfang(View view) {
-        EditText editext = findViewById(R.id.input);
-        EditText editext2 = findViewById(R.id.output);
-        String str = editext.getText().toString();
-        if(str.equals("") || str.length() == 0) {
-
-            Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
-        }else{
-            double re = Double.parseDouble(str);
-
-            editext2.setText(format(re*re));
-        }
-
-    }
-
     public double abs(double a){
         return a>0?a:-a;
     }
-    public void onClickMod(View view) {
+    public void onClickAbs(View view) {
         EditText editext = findViewById(R.id.input);
         EditText editext2 = findViewById(R.id.output);
         String str = editext.getText().toString();
@@ -136,21 +172,6 @@ public class MainActivity extends AppCompatActivity {
             double re = Double.parseDouble(str);
 
             editext2.setText(abs(re)+"");
-        }
-
-    }
-
-    public void onClickBaifenhao(View view) {
-        EditText editext = findViewById(R.id.input);
-        EditText editext2 = findViewById(R.id.output);
-        String str = editext.getText().toString();
-        if(str.equals("") || str.length() == 0) {
-
-            Toast.makeText(MainActivity.this, "不能为空", Toast.LENGTH_LONG).show();
-        }else{
-            double re = Double.parseDouble(str);
-
-            editext2.setText(re*100+"%");
         }
 
     }
@@ -183,47 +204,63 @@ public class MainActivity extends AppCompatActivity {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"0");
     }
+
     public void onClick1(View view) {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"1");
     }
+
     public void onClick2(View view) {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"2");
     }
+
     public void onClick3(View view) {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"3");
     }
+
     public void onClick4(View view) {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"4");
     }
+
     public void onClick5(View view) {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"5");
     }
+
     public void onClick6(View view) {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"6");
     }
+
     public void onClick7(View view) {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"7");
     }
+
     public void onClick8(View view) {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"8");
     }
+
     public void onClick9(View view) {
         EditText edittext = findViewById(R.id.input);
         edittext.setText(edittext.getText()+"9");
     }
+
+
     public void onClickDot(View view) {
         EditText edittext = findViewById(R.id.input);
         String str = edittext.getText().toString();
-        if(str.length() == 0){
+        StringBuilder sb = new StringBuilder(str);
+
+        if(str.length() == 0 ){
             edittext.setText("0.");
+        }
+        else if(!Character.isDigit(str.charAt(sb.length()-1))){
+            edittext.setText(edittext.getText()+"0.");
         }
         else
             edittext.setText(edittext.getText()+".");
@@ -319,6 +356,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     public void onClickDengyu(View view) {
         EditText edittext = findViewById(R.id.input);
         EditText edittext2 = findViewById(R.id.output);
@@ -342,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else if(flag == 1)
                 Toast.makeText(MainActivity.this,"不能连续输入运算符", Toast.LENGTH_LONG).show();
-            else if(!Character.isDigit(str.charAt(0)) && str.charAt(0) != '(' && str.charAt(0) != ')')
+            else if(!Character.isDigit(str.charAt(0)) && str.charAt(0) != '(' && str.charAt(0) != ')'&& str.charAt(0) != '-')
                 Toast.makeText(MainActivity.this,"首字符不能为运算符", Toast.LENGTH_LONG).show();
             else if(str.contains("#")){
                 String[] list = str.split("#");

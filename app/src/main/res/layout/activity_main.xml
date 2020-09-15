@@ -29,7 +29,6 @@
         android:background="#d9ffff"
         android:id="@+id/input"
         android:hint="@string/input"
-        android:inputType="textPersonName"
         android:ems="10"
         android:gravity="right"
         android:layout_gravity="center"/>
@@ -44,7 +43,6 @@
         android:background="#d9ffff"
         android:id="@+id/output"
         android:hint="@string/output"
-        android:inputType="textPersonName"
         android:ems="10"
         android:gravity="right"
         android:layout_gravity="center"/>
